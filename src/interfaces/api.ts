@@ -1,0 +1,21 @@
+import type { TProductCategories, TProductCategoriesNamesList } from '../types/Category';
+import type { TPaginatedProducts, TProduct, TProductDeleted, TProductReviews, TProducts, TProductsByCategory } from '../types/Product';
+
+export interface IApi {
+  // Products
+  getProducts: () => Promise<TProducts>;
+  getProduct: (id: string) => Promise<TProduct>;
+  getProductReviews: (id: string) => Promise<TProductReviews>;
+
+  searchProducts: (query: string) => Promise<TProducts>;
+  paginateProducts: (limit: number, skip: number | null) => Promise<TPaginatedProducts>;
+  sortProducts: (sortBy: string, order: string) => Promise<TPaginatedProducts>;
+  getProductsByCategory: (category: string) => Promise<TProductsByCategory>;
+  addProduct: (product: TProduct) => Promise<TProduct>;
+  updateProduct: (id: string, product: TProduct) => Promise<TProduct>;
+  deleteProduct: (id: string) => Promise<TProductDeleted>;
+
+  // Categories
+  getCategories: () => Promise<TProductCategories>;
+  getCategoriesNamesList: () => Promise<TProductCategoriesNamesList>;
+}
