@@ -6,6 +6,7 @@ export type TProductStore = {
   product: TProduct | null;
   searchResults: TProducts | null;
   paginatedProducts: TPaginatedProducts | null;
+  sortedProducts: TPaginatedProducts | null;
   total: number | null;
   skip: number | null;
   limit: number | null;

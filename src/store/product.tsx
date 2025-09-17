@@ -10,6 +10,7 @@ export const useProductStore = create<TProductStore>(set => ({
   productReviews: null,
   searchResults: null,
   paginatedProducts: null,
+  sortedProducts: null,
   total: null,
   skip: null,
   limit: 10,
@@ -90,7 +91,7 @@ export const useProductStore = create<TProductStore>(set => ({
     try {
       const data = await api.sortProducts(sortBy, order);
       set({
-        paginatedProducts: {
+        sortedProducts: {
           products: data.products || [],
           total: data.total ?? 0,
           skip: data.skip ?? 0,

@@ -6,7 +6,7 @@ import { Sort } from '../partials/Sort';
 import { Product } from './Product';
 
 export const ProductsList = () => {
-  const { paginatedProducts, paginateProducts } = useProductStore();
+  const { paginatedProducts, paginateProducts, sortedProducts } = useProductStore();
 
   useEffect(() => {
     paginateProducts(10, 0);
@@ -16,13 +16,13 @@ export const ProductsList = () => {
     return <p>Loading...</p>;
   }
 
+  const productsToRender = sortedProducts && sortedProducts.products.length > 0 ? sortedProducts.products : paginatedProducts.products;
+
   return (
     <div className='flex flex-col justify-center items-center my-4'>
-      <div className='flex flex-row'>
-        <Sort />
-      </div>
-      <div className='products-list grid grid-cols-3 gap-4'>
-        {paginatedProducts.products.map((product: TProduct) => (
+      <Sort />
+      <div className='products-list grid grid-cols-4 gap-4'>
+        {productsToRender.map((product: TProduct) => (
           <Product key={product.id} product={product} />
         ))}
       </div>

@@ -34,7 +34,8 @@ export const api: IApi = {
 
   sortProducts: async (sortBy: string, order: string): Promise<TPaginatedProducts> => {
     const res = await axios.get(`${baseURL}?sortBy=${sortBy}&order=${order}`);
-    return res.data.products;
+
+    return res.data;
   },
 
   getCategories: async (): Promise<TProductCategories> => {

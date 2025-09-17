@@ -2,7 +2,7 @@ import { ProductsList } from './components/Products/ProductsList';
 import { Footer } from './components/partials/Footer';
 import { Header } from './components/partials/Header';
 
-function App() {
+export function App() {
   return (
     <div className='App flex flex-col p-0 m-0 h-screen w-screen font-roboto'>
       <Header />
@@ -11,5 +11,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
