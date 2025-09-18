@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useProductStore } from '../../store/product';
 import type { TProduct } from '../../types/Product';
-import { Pagination } from '../partials/Pagination';
-import { Sort } from '../partials/Sort';
+import { Pagination } from './Pagination';
 import { Product } from './Product';
+import { Sort } from './Sort';
 
 export const ProductsList = () => {
   const { paginatedProducts, paginateProducts, sortedProducts } = useProductStore();

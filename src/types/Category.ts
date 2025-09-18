@@ -6,4 +6,4 @@ export type TProductCategory = {
 
 export type TProductCategories = TProductCategory[];
 
-export type TProductCategoriesNamesList = string[];
+export type TProductCategoryNamesList = string[];

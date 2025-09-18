@@ -1,4 +1,4 @@
-import type { TProductCategories, TProductCategoriesNamesList } from '../types/Category';
+import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
 import type { TPaginatedProducts, TProduct, TProductDeleted, TProductReviews, TProducts, TProductsByCategory } from '../types/Product';
 
 export interface IApi {
@@ -17,5 +17,5 @@ export interface IApi {
 
   // Categories
   getCategories: () => Promise<TProductCategories>;
-  getCategoriesNamesList: () => Promise<TProductCategoriesNamesList>;
+  getCategoryNamesList: () => Promise<TProductCategoryNamesList>;
 }
