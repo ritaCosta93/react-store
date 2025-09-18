@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
 import { useCategoryStore } from '../../store/category';
+import { useProductStore } from '../../store/product';
+import { formatText } from '../../utils/formatText';
 
 export const CategoriesList = () => {
   const { categoryNamesList, getCategoryNamesList } = useCategoryStore();
+  const { getProductsByCategory } = useProductStore();
 
   useEffect(() => {
     getCategoryNamesList();
-  }, [categoryNamesList]);
+  }, [getCategoryNamesList]);
 
   return (
     <div className='flex flex-col gap-2'>
@@ -15,7 +18,9 @@ export const CategoriesList = () => {
       </div>
       <ul>
         {categoryNamesList?.map((category: string) => (
-          <li key={category}>{category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}</li>
+          <li key={category} value={category} onClick={() => getProductsByCategory(category)} className='hover:text-indigo-500 hover:font-bold'>
+            {formatText(category)}
+          </li>
         ))}
       </ul>
     </div>

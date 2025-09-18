@@ -6,7 +6,7 @@ import { Product } from './Product';
 import { Sort } from './Sort';
 
 export const ProductsList = () => {
-  const { paginatedProducts, paginateProducts, sortedProducts } = useProductStore();
+  const { paginatedProducts, paginateProducts, sortedProducts, productsByCategory } = useProductStore();
 
   useEffect(() => {
     paginateProducts(10, 0);
@@ -16,7 +16,12 @@ export const ProductsList = () => {
     return <p>Loading...</p>;
   }
 
-  const productsToRender = sortedProducts && sortedProducts.products.length > 0 ? sortedProducts.products : paginatedProducts.products;
+  const productsToRender =
+    productsByCategory && productsByCategory.length > 0
+      ? productsByCategory
+      : sortedProducts && sortedProducts.products.length > 0
+        ? sortedProducts.products
+        : paginatedProducts.products;
 
   return (
     <div className='flex flex-col justify-center items-center my-4'>

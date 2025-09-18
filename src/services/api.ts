@@ -2,7 +2,7 @@
 import axios from 'axios';
 import type { IApi } from '../interfaces/api';
 import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
-import type { TPaginatedProducts, TProduct, TProductDeleted, TProductReviews, TProducts, TProductsByCategory } from '../types/Product';
+import type { TPaginatedProducts, TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
 
 const baseURL = 'https://dummyjson.com/products';
 
@@ -50,9 +50,9 @@ export const api: IApi = {
     return res.data;
   },
 
-  getProductsByCategory: async (category: string): Promise<TProductsByCategory> => {
-    const res = await axios.get<TProductsByCategory>(`${baseURL}/category/${category}`);
-    return res.data;
+  getProductsByCategory: async (category: string): Promise<TProducts> => {
+    const res = await axios.get(`${baseURL}/category/${category}`);
+    return res.data.products;
   },
 
   addProduct: async (product: TProduct): Promise<TProduct> => {

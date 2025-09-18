@@ -1,5 +1,5 @@
 import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
-import type { TPaginatedProducts, TProduct, TProductDeleted, TProductReviews, TProducts, TProductsByCategory } from '../types/Product';
+import type { TPaginatedProducts, TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
 
 export interface IApi {
   // Products
@@ -10,7 +10,7 @@ export interface IApi {
   searchProducts: (query: string) => Promise<TProducts>;
   paginateProducts: (limit: number, skip: number | null) => Promise<TPaginatedProducts>;
   sortProducts: (sortBy: string, order: string) => Promise<TPaginatedProducts>;
-  getProductsByCategory: (category: string) => Promise<TProductsByCategory>;
+  getProductsByCategory: (category: string) => Promise<TProducts>;
   addProduct: (product: TProduct) => Promise<TProduct>;
   updateProduct: (id: string, product: TProduct) => Promise<TProduct>;
   deleteProduct: (id: string) => Promise<TProductDeleted>;
