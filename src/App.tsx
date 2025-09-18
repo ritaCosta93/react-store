@@ -1,6 +1,7 @@
 import { CategoriesList } from './components/Categories/CategoriesList';
 import { AddProduct } from './components/Products/AddProduct';
 import { ProductsList } from './components/Products/ProductsList';
+import { Search } from './components/Products/Search';
 import { Footer } from './components/partials/Footer';
 import { Header } from './components/partials/Header';
 
@@ -10,7 +11,11 @@ export function App() {
       <Header />
       <div className='flex flex-row justify-center'>
         <AddProduct />
-        <ProductsList />
+        <div className='flex flex-col'>
+          <Search />
+          <ProductsList />
+        </div>
+
         <div className='flex sidebar p-4'>
           <CategoriesList />
         </div>

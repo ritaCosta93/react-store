@@ -24,8 +24,8 @@ export const api: IApi = {
   },
 
   searchProducts: async (query: string): Promise<TProducts> => {
-    const res = await axios.get<TProducts>(`${baseURL}/search?q=${query}`);
-    return res.data;
+    const res = await axios.get(`${baseURL}/search?q=${query}`);
+    return res.data.products;
   },
 
   paginateProducts: async (limit: number | null, skip: number | null): Promise<TPaginatedProducts> => {
