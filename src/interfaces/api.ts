@@ -6,12 +6,12 @@ export interface IApi {
   getProducts: () => Promise<TProducts>;
   getProduct: (id: string) => Promise<TProduct>;
   getProductReviews: (id: string) => Promise<TProductReviews>;
-
+  getProductsByCategory: (category: string) => Promise<TProducts>;
   searchProducts: (query: string) => Promise<TProducts>;
   paginateProducts: (limit: number, skip: number | null) => Promise<TPaginatedProducts>;
   sortProducts: (sortBy: string, order: string) => Promise<TPaginatedProducts>;
-  getProductsByCategory: (category: string) => Promise<TProducts>;
-  addProduct: (product: TProduct) => Promise<TProduct>;
+
+  addProduct: (product: TProduct) => Promise<TProduct | any>;
   updateProduct: (id: string, product: TProduct) => Promise<TProduct>;
   deleteProduct: (id: string) => Promise<TProductDeleted>;
 

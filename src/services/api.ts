@@ -56,7 +56,7 @@ export const api: IApi = {
   },
 
   addProduct: async (product: TProduct): Promise<TProduct> => {
-    const res = await axios.post<TProduct>(`${baseURL}/products/add`, product);
+    const res = await axios.post(`${baseURL}/add`, product);
     return res.data;
   },
 

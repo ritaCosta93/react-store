@@ -1,7 +1,8 @@
 import type { TPaginatedProducts, TProduct, TProductReviews, TProducts } from './Product';
 
 export type TProductStore = {
-  products: TProducts | null;
+  products: TProduct[] | null | any;
+
   productsByCategory: TProducts | null;
   product: TProduct | null;
   searchResults: TProducts | null;

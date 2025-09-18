@@ -4,7 +4,7 @@ import { api } from '../services/api';
 import type { TProductStore } from '../types/ProductStore';
 
 export const useProductStore = create<TProductStore>(set => ({
-  products: null,
+  products: [],
   productsByCategory: null,
   product: null,
   productReviews: null,
@@ -62,8 +62,6 @@ export const useProductStore = create<TProductStore>(set => ({
   paginateProducts: async (limit: number, skip: number) => {
     try {
       const data = await api.paginateProducts(limit, skip);
-
-      // Ensure the shape matches your component expectation
       set({
         paginatedProducts: {
           products: data.products || [],
@@ -115,7 +113,10 @@ export const useProductStore = create<TProductStore>(set => ({
   addProduct: async product => {
     try {
       const data = await api.addProduct(product);
-      set({ product: data });
+      console.log(data);
+
+      set(state => ({ products: [...state.products, data] }));
+      set(state => ({ productsByCategory: state.productsByCategory }));
     } catch (error) {
       console.error('Failed to fetch product:', error);
     }
