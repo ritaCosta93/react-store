@@ -4,7 +4,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { useRoutes } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import { routes } from './router/routes';
+import { routes } from './routers/routes';
 
 function AppRouter() {
   const element = useRoutes(routes);

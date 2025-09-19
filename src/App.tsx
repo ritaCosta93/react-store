@@ -9,14 +9,13 @@ export function App() {
       <Header />
       <Search />
       <div className='flex flex-row justify-center'>
-        <div className='flex flex-col w-1/4'>
+        <div className='flex flex-col w-1/5'>
           <CategoriesList />
         </div>
-        <div className='flex flex-col w-4/5'>
+        <div className='flex flex-col w-full'>
           <Outlet />
         </div>
       </div>
-
       <Footer />
     </div>
   );
