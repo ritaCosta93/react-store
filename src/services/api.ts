@@ -2,7 +2,7 @@
 import axios from 'axios';
 import type { IApi } from '../interfaces/api';
 import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
-import type { TPaginatedProducts, TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
+import type { TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
 
 const baseURL = 'https://dummyjson.com/products';
 
@@ -10,7 +10,7 @@ export const api: IApi = {
   //Products
   getProducts: async (): Promise<TProducts> => {
     const res = await axios.get(baseURL);
-    return res.data.products;
+    return res.data;
   },
 
   getProduct: async (id: string): Promise<TProduct> => {
@@ -23,17 +23,17 @@ export const api: IApi = {
     return res.data.reviews;
   },
 
-  searchProducts: async (query: string): Promise<TProducts> => {
+  searchProducts: async (query: string): Promise<TProduct[]> => {
     const res = await axios.get(`${baseURL}/search?q=${query}`);
     return res.data.products;
   },
 
-  paginateProducts: async (limit: number | null, skip: number | null): Promise<TPaginatedProducts> => {
+  paginateProducts: async (limit: number | null, skip: number | null): Promise<TProduct[]> => {
     const res = await axios.get(`${baseURL}?limit=${limit}&skip=${skip}`);
     return res.data;
   },
 
-  sortProducts: async (sortBy: string, order: string): Promise<TPaginatedProducts> => {
+  sortProducts: async (sortBy: string, order: string): Promise<TProducts> => {
     const res = await axios.get(`${baseURL}?sortBy=${sortBy}&order=${order}`);
 
     return res.data;
@@ -50,7 +50,7 @@ export const api: IApi = {
     return res.data;
   },
 
-  getProductsByCategory: async (category: string): Promise<TProducts> => {
+  getProductsByCategory: async (category: string): Promise<TProduct[]> => {
     const res = await axios.get(`${baseURL}/category/${category}`);
     return res.data.products;
   },

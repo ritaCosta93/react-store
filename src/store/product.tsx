@@ -3,28 +3,34 @@ import { api } from '../services/api';
 
 import type { TProductStore } from '../types/ProductStore';
 
-export const useProductStore = create<TProductStore>(set => ({
+export const useProductStore = create<TProductStore>((set, get) => ({
   products: [],
-  productsByCategory: null,
   product: null,
   productReviews: null,
-  searchResults: null,
-  paginatedProducts: null,
-  sortedProducts: null,
-  total: null,
-  skip: null,
-  limit: 10,
+  totalProducts: 0,
+  pageSize: 20,
+  currentPage: 1,
+  totalPages: 1,
+
+  setPage: (page: number) => {
+    const { totalProducts, pageSize } = get();
+    const totalPages = Math.ceil(totalProducts / pageSize) || 1;
+    const newPage = Math.min(Math.max(page, 1), totalPages);
+    set({ currentPage: newPage });
+  },
 
   getProducts: async () => {
-    api
-      .getProducts()
-      .then(data => {
-        set({ products: data });
-        return data;
-      })
-      .catch(err => {
-        throw err;
+    try {
+      const data = await api.getProducts();
+      set({
+        products: data.products,
+        totalProducts: data.total
       });
+      return data;
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+      throw error;
+    }
   },
 
   getProductReviews: async id => {
@@ -38,6 +44,7 @@ export const useProductStore = create<TProductStore>(set => ({
         throw err;
       });
   },
+
   getProduct: async id => {
     api
       .getProduct(id)
@@ -53,35 +60,10 @@ export const useProductStore = create<TProductStore>(set => ({
   searchProducts: async query => {
     try {
       const data = await api.searchProducts(query);
-      set({ searchResults: data });
+      set({ products: data });
     } catch (error) {
       console.error('Failed to fetch product:', error);
-    }
-  },
-
-  paginateProducts: async (limit: number, skip: number) => {
-    try {
-      const data = await api.paginateProducts(limit, skip);
-      set({
-        paginatedProducts: {
-          products: data.products || [],
-          total: data.total ?? 0,
-          skip: data.skip ?? 0,
-          limit: data.limit ?? limit
-        }
-      });
-
-      return data;
-    } catch (err) {
-      set({
-        paginatedProducts: {
-          products: [],
-          total: 0,
-          skip: 0,
-          limit
-        }
-      });
-      throw err;
+      throw error;
     }
   },
 
@@ -89,12 +71,7 @@ export const useProductStore = create<TProductStore>(set => ({
     try {
       const data = await api.sortProducts(sortBy, order);
       set({
-        sortedProducts: {
-          products: data.products || [],
-          total: data.total ?? 0,
-          skip: data.skip ?? 0,
-          limit: 0
-        }
+        products: data.products || []
       });
     } catch (error) {
       console.error('Failed to fetch product:', error);
@@ -104,7 +81,7 @@ export const useProductStore = create<TProductStore>(set => ({
   getProductsByCategory: async category => {
     try {
       const data = await api.getProductsByCategory(category);
-      set({ productsByCategory: data });
+      set({ products: data });
     } catch (error) {
       console.error('Failed to fetch product:', error);
     }
@@ -113,10 +90,7 @@ export const useProductStore = create<TProductStore>(set => ({
   addProduct: async product => {
     try {
       const data = await api.addProduct(product);
-      console.log(data);
-
       set(state => ({ products: [...state.products, data] }));
-      set(state => ({ productsByCategory: state.productsByCategory }));
     } catch (error) {
       console.error('Failed to fetch product:', error);
     }

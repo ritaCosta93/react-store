@@ -23,10 +23,10 @@ export type TProduct = {
   thumbnail: string;
 };
 
-export type TPaginatedProducts = {
+export type TProducts = {
   products: TProduct[];
-  total: number | null;
-  skip: number | null;
+  total: number;
+  skip: number;
   limit: number;
 };
 
@@ -58,14 +58,3 @@ export type TProductDeleted = {
   isDeleted: boolean;
   deletedOn: string;
 };
-
-export type TProducts = TProduct[];
-
-export type TProductByCategory = {
-  products: TProducts;
-  total: number;
-  skip: number;
-  limit: number;
-};
-
-export type TProductsByCategory = TProductByCategory[];
