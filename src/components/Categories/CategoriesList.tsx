@@ -12,7 +12,7 @@ export const CategoriesList = () => {
   }, [getCategoryNamesList]);
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 p-4'>
       <div className='flex flex-row'>
         <h2 className='text-lg font-bold p-2 border-b'>Categories</h2>
       </div>
