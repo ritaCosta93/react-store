@@ -11,6 +11,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
   pageSize: 20,
   currentPage: 1,
   totalPages: 1,
+  searchTerm: null,
 
   setPage: (page: number) => {
     const { totalProducts, pageSize } = get();
@@ -60,6 +61,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
   searchProducts: async query => {
     try {
       const data = await api.searchProducts(query);
+      set({ searchTerm: query });
       set({ products: data });
     } catch (error) {
       console.error('Failed to fetch product:', error);

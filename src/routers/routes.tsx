@@ -5,14 +5,10 @@ import { ProductsList } from '../components/Products/ProductsList';
 
 import { appPaths } from '../routers/constants';
 import { useGlobalStore } from '../store/global';
-
-export type TProtectedRoute = {
-  children: React.ReactElement | React.ReactElement[];
-};
+import type { TProtectedRoute } from '../types/Router';
 
 export const ProtectedRoute: React.FC<TProtectedRoute> = ({ children }) => {
   const authenticated = useGlobalStore(state => state.authenticated);
-
   return authenticated ? <>{children}</> : <Navigate to={appPaths.root} replace />;
 };
 

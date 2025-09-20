@@ -16,7 +16,7 @@ export const ProductsList = () => {
     <div className='flex flex-col justify-center items-center my-4'>
       <Sort />
 
-      <div className='products-list grid grid-cols-4 gap-4'>
+      <div className='products-list grid grid-cols-6 gap-4'>
         {products.map((product: TProduct) => (
           <Product key={product.id} product={product} />
         ))}

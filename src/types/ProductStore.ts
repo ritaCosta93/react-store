@@ -8,6 +8,7 @@ export type TProductStore = {
   currentPage: number;
   totalPages: number;
   productReviews: TProductReviews | null;
+  searchTerm: string | null;
   getProducts: () => Promise<TProducts>;
   getProductReviews: (id: string) => Promise<void>;
   getProduct: (id: string) => Promise<void>;
