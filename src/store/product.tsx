@@ -12,6 +12,13 @@ export const useProductStore = create<TProductStore>((set, get) => ({
   currentPage: 1,
   totalPages: 1,
   searchTerm: null,
+  sortOrder: null,
+  setSearchTerm: (searchTerm: string | null) => {
+    set({ searchTerm: searchTerm });
+  },
+  setSortOrder: (sortOrder: string | null) => {
+    set({ sortOrder: sortOrder });
+  },
 
   setPage: (page: number) => {
     const { totalProducts, pageSize } = get();

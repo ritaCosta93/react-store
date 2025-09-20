@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useProductStore } from '../../store/product';
+import { Sort } from './Sort';
 
 export const Search = () => {
   const { searchProducts, searchTerm } = useProductStore();
@@ -24,17 +25,22 @@ export const Search = () => {
   };
 
   return (
-    <div className='flex flex-row p-4'>
-      <input
-        type='text'
-        name='search'
-        className='border rounded-full w-full border-indigo-600 p-2'
-        placeholder='Search product...'
-        value={searchTerm || ''}
-        onChange={e => {
-          handleChange(e.currentTarget.value);
-        }}
-      />
+    <div className='flex flex-col p-4'>
+      <div className='flex flex-row justify-center'>
+        <Sort />
+      </div>
+      <div className='flex flex-row'>
+        <input
+          type='text'
+          name='search'
+          className='border rounded-full w-full border-indigo-600 p-2'
+          placeholder='Search product...'
+          value={searchTerm || ''}
+          onChange={e => {
+            handleChange(e.currentTarget.value);
+          }}
+        />
+      </div>
     </div>
   );
 };

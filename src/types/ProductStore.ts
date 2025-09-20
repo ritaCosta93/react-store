@@ -9,11 +9,15 @@ export type TProductStore = {
   totalPages: number;
   productReviews: TProductReviews | null;
   searchTerm: string | null;
+  sortOrder: string | null;
+  setSearchTerm: (searchTerm: string | null) => void;
+  setSortOrder: (sortOrder: string | null) => void;
+
   getProducts: () => Promise<TProducts>;
   getProductReviews: (id: string) => Promise<void>;
   getProduct: (id: string) => Promise<void>;
   searchProducts: (query: string) => Promise<void>;
-  sortProducts: (sortBy: string, order: string) => Promise<void>;
+  sortProducts: (sortBy: string, order: string) => Promise<any>;
   getProductsByCategory: (category: string) => Promise<void>;
   addProduct: (product: TProduct) => Promise<void>;
   updateProduct: (id: string, product: TProduct) => Promise<void>;
