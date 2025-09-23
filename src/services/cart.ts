@@ -9,5 +9,9 @@ export const cartsApi: ICartRequests = {
   addToCart: async (cart: TCartProduct): Promise<TCart> => {
     const res = await axios.post(`${cartURL}/add`, cart);
     return res.data;
+  },
+  getCart: async (userId: string | number | null): Promise<TCart> => {
+    const res = await axios.get(`${cartURL}/${userId}`);
+    return res.data;
   }
 };

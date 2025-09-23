@@ -21,6 +21,8 @@ export type TCart = {
   totalQuantity: number;
 };
 
+export type TCarts = TCart[];
+
 export type TCartProduct = {
   userId?: number | undefined | string;
   products: [
