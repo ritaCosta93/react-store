@@ -11,10 +11,8 @@ export const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await login(username, password);
-
+      await login(username, password);
       setError('');
-      console.log('✅ Login ok:', res);
     } catch (err: any) {
       setError('Falha no login. Verifique utilizador/password.');
       console.error('❌ Erro login:', err);

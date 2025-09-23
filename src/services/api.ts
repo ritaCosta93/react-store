@@ -3,7 +3,7 @@ import axios from 'axios';
 import type { IApi } from '../interfaces/api';
 import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
 import type { TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
-import type { TLoginResponse } from '../types/User';
+import type { TUser } from '../types/User';
 
 const baseURL = 'https://dummyjson.com/products';
 const authURL = 'https://dummyjson.com/auth';
@@ -72,9 +72,9 @@ export const api: IApi = {
     return res.data;
   },
 
-  login: async (username: string, password: string): Promise<TLoginResponse> => {
+  login: async (username: string, password: string): Promise<TUser> => {
     try {
-      const res = await axios.post<TLoginResponse>(
+      const res = await axios.post<TUser>(
         `${authURL}/login`,
         {
           username,

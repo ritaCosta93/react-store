@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useCategoryStore } from '../../store/category';
-import { useProductStore } from '../../store/product';
-import type { TProduct } from '../../types/Product';
-import { formatText } from '../../utils/formatText';
+import { useCategoryStore } from '../store/category';
+import { useProductStore } from '../store/product';
+import type { TProduct } from '../types/Product';
+import { formatText } from '../utils/formatText';
 
 export const AddProduct = () => {
   const emptyProduct: TProduct = {

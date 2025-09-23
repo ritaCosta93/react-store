@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { api } from '../services/api';
 
+import type { TProduct } from '../types/Product';
 import type { TProductStore } from '../types/ProductStore';
 
 export const useProductStore = create<TProductStore>((set, get) => ({
@@ -13,6 +14,9 @@ export const useProductStore = create<TProductStore>((set, get) => ({
   totalPages: 1,
   searchTerm: null,
   sortOrder: null,
+  setProduct: (product: TProduct | null) => {
+    set({ product: product });
+  },
   setSearchTerm: (searchTerm: string | null) => {
     set({ searchTerm: searchTerm });
   },

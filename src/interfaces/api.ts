@@ -1,6 +1,6 @@
 import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
 import type { TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
-import type { TLoginResponse } from '../types/User';
+import type { TUser } from '../types/User';
 
 export interface IApi {
   // Products
@@ -20,5 +20,5 @@ export interface IApi {
   getCategoryNamesList: () => Promise<TProductCategoryNamesList>;
 
   // Authentication
-  login: (username: string, password: string) => Promise<TLoginResponse>;
+  login: (username: string, password: string) => Promise<TUser>;
 }
