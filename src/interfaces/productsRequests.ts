@@ -1,0 +1,15 @@
+import type { TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
+
+export interface IProductsRequests {
+  // Products
+  getProducts: () => Promise<TProducts>;
+  getProduct: (id: string) => Promise<TProduct>;
+  getProductReviews: (id: string) => Promise<TProductReviews>;
+  getProductsByCategory: (category: string) => Promise<TProduct[]>;
+  searchProducts: (query: string) => Promise<TProduct[]>;
+  paginateProducts: (limit: number, skip: number | null) => Promise<TProduct[]>;
+  sortProducts: (sortBy: string, order: string) => Promise<TProducts>;
+  addProduct: (product: TProduct) => Promise<TProduct | any>;
+  updateProduct: (id: string, product: TProduct) => Promise<TProduct>;
+  deleteProduct: (id: string) => Promise<TProductDeleted>;
+}

@@ -1,8 +1,8 @@
-import type { TProduct, TProductReviews, TProducts } from './Product';
+import type { TProduct, TProductReviews, TProducts } from '../Product';
 
 export type TProductStore = {
   products: TProduct[];
-  product: TProduct | null;
+  product: TProduct | null | undefined;
   totalProducts: number;
   pageSize: number;
   currentPage: number;

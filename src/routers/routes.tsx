@@ -3,6 +3,7 @@ import { App } from '../App';
 import { ProductsList } from '../components/Products/ProductsList';
 import { AddProduct } from '../pages/AddProduct';
 
+import { Cart } from '../pages/Cart';
 import { Login } from '../pages/Login';
 import { ProductPage } from '../pages/Product';
 import { appPaths } from '../routers/constants';
@@ -40,6 +41,14 @@ export const routes = [
         element: (
           <ProtectedRoute>
             <ProductPage />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: appPaths.cart,
+        element: (
+          <ProtectedRoute>
+            <Cart />
           </ProtectedRoute>
         )
       }

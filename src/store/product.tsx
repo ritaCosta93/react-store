@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import { api } from '../services/api';
 
+import { productsApi } from '../services/products';
 import type { TProduct } from '../types/Product';
-import type { TProductStore } from '../types/ProductStore';
+import type { TProductStore } from '../types/stores/ProductStore';
 
 export const useProductStore = create<TProductStore>((set, get) => ({
   products: [],
@@ -33,7 +33,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
 
   getProducts: async () => {
     try {
-      const data = await api.getProducts();
+      const data = await productsApi.getProducts();
       set({
         products: data.products,
         totalProducts: data.total
@@ -46,7 +46,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
   },
 
   getProductReviews: async id => {
-    api
+    productsApi
       .getProductReviews(id)
       .then(data => {
         set({ productReviews: data });
@@ -58,7 +58,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
   },
 
   getProduct: async id => {
-    api
+    productsApi
       .getProduct(id)
       .then(data => {
         set({ product: data });
@@ -71,7 +71,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
 
   searchProducts: async query => {
     try {
-      const data = await api.searchProducts(query);
+      const data = await productsApi.searchProducts(query);
       set({ searchTerm: query });
       set({ products: data });
     } catch (error) {
@@ -82,7 +82,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
 
   sortProducts: async (sortBy, order) => {
     try {
-      const data = await api.sortProducts(sortBy, order);
+      const data = await productsApi.sortProducts(sortBy, order);
       set({
         products: data.products || []
       });
@@ -93,7 +93,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
 
   getProductsByCategory: async category => {
     try {
-      const data = await api.getProductsByCategory(category);
+      const data = await productsApi.getProductsByCategory(category);
       set({ products: data });
     } catch (error) {
       console.error('Failed to fetch product:', error);
@@ -102,7 +102,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
 
   addProduct: async product => {
     try {
-      const data = await api.addProduct(product);
+      const data = await productsApi.addProduct(product);
       set(state => ({ products: [...state.products, data] }));
     } catch (error) {
       console.error('Failed to fetch product:', error);
@@ -111,7 +111,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
 
   updateProduct: async (id, product) => {
     try {
-      const data = await api.updateProduct(id, product);
+      const data = await productsApi.updateProduct(id, product);
       set({ product: data });
     } catch (error) {
       console.error('Failed to fetch product:', error);
@@ -120,7 +120,7 @@ export const useProductStore = create<TProductStore>((set, get) => ({
 
   deleteProduct: async id => {
     try {
-      const data = await api.deleteProduct(id);
+      const data = await productsApi.deleteProduct(id);
       set({ product: data.product });
     } catch (error) {
       console.error('Failed to fetch product:', error);

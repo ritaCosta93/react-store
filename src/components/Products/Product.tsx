@@ -7,12 +7,9 @@ export const Product = ({ product }: { product: TProduct }) => {
   const navigate = useNavigate();
 
   const handleProduct = (product: TProduct) => {
-    if (!product) return;
-
     setProduct(product);
-
-    const id = product.id?.toString();
-    if (id) {
+    if (product) {
+      const id = product.id?.toString();
       navigate(`/product/${id}`);
     }
   };
@@ -22,7 +19,7 @@ export const Product = ({ product }: { product: TProduct }) => {
   const image = product.images?.[0] ?? 'https://via.placeholder.com/150';
 
   return (
-    <div className='product bg-indigo-200 rounded flex flex-col items-center gap-2 p-4 hover:shadow-md cursor-pointer' onClick={() => handleProduct(product)}>
+    <div className='product bg-indigo-200 rounded flex flex-col items-center gap-2 p-4 hover:shadow-md' onClick={() => handleProduct(product)}>
       <p>{product.title}</p>
       <img src={image} alt='product image' className='w-32' />
       <p>{product.price}</p>

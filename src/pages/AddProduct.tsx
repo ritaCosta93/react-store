@@ -107,7 +107,7 @@ export const AddProduct = () => {
         <input type='text' name='thumbnail' value={product?.thumbnail} onChange={handleChange} placeholder='Thumbnail URL' />
         <textarea
           name='images'
-          value={product?.images.join(', ')}
+          value={product?.images?.join(', ')}
           onChange={e => setProduct(p => ({ ...p, images: e.target.value.split(',').map(i => i.trim()) }))}
           placeholder='Image URLs (comma separated)'
         />

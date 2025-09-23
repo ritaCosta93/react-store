@@ -1,14 +1,11 @@
-// services/api.ts
 import axios from 'axios';
 import type { IApi } from '../interfaces/api';
-import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
+import type { IProductsRequests } from '../interfaces/productsRequests';
 import type { TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
-import type { TUser } from '../types/User';
 
-const baseURL = 'https://dummyjson.com/products';
-const authURL = 'https://dummyjson.com/auth';
+const baseURL: IApi['baseUrl'] = 'https://dummyjson.com/products';
 
-export const api: IApi = {
+export const productsApi: IProductsRequests = {
   //Products
   getProducts: async (): Promise<TProducts> => {
     const res = await axios.get(baseURL);
@@ -40,55 +37,20 @@ export const api: IApi = {
 
     return res.data;
   },
-
-  //Categories
-  getCategories: async (): Promise<TProductCategories> => {
-    const res = await axios.get<TProductCategories>(`${baseURL}/categories`);
-    return res.data;
-  },
-
-  getCategoryNamesList: async (): Promise<TProductCategoryNamesList> => {
-    const res = await axios.get<TProductCategoryNamesList>(`${baseURL}/category-list`);
-    return res.data;
-  },
-
   getProductsByCategory: async (category: string): Promise<TProduct[]> => {
     const res = await axios.get(`${baseURL}/category/${category}`);
     return res.data.products;
   },
-
   addProduct: async (product: TProduct): Promise<TProduct> => {
     const res = await axios.post(`${baseURL}/add`, product);
     return res.data;
   },
-
   updateProduct: async (id: string, product: TProduct): Promise<TProduct> => {
     const res = await axios.put<TProduct>(`${baseURL}/products/${id}`, product);
     return res.data;
   },
-
   deleteProduct: async (id: string): Promise<TProductDeleted> => {
     const res = await axios.delete<TProductDeleted>(`${baseURL}/products/${id}`);
     return res.data;
-  },
-
-  login: async (username: string, password: string): Promise<TUser> => {
-    try {
-      const res = await axios.post<TUser>(
-        `${authURL}/login`,
-        {
-          username,
-          password,
-          expiresInMins: 30
-        },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
-      return res.data;
-    } catch (err: any) {
-      if (err.response?.status === 401) {
-        throw new Error('Uti ou senha inválidos');
-      }
-      throw err;
-    }
   }
 };

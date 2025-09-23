@@ -12,7 +12,7 @@ export function App() {
         <div className='flex flex-col w-1/5'>
           <CategoriesList />
         </div>
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-col w-full justify-center'>
           <Outlet />
         </div>
       </div>

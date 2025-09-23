@@ -1,4 +1,4 @@
-import type { TUser } from './User';
+import type { TUser } from '../User';
 
 export type TGlobalStore = {
   authenticated: boolean;

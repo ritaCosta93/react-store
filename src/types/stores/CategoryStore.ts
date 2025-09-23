@@ -1,4 +1,4 @@
-import type { TProductCategoryNamesList } from './Category';
+import type { TProductCategoryNamesList } from '../Category';
 
 export type TCategoryStore = {
   categoryNamesList: TProductCategoryNamesList | null;
