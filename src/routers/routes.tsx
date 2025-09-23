@@ -3,6 +3,7 @@ import { App } from '../App';
 import { AddProduct } from '../components/Products/AddProduct';
 import { ProductsList } from '../components/Products/ProductsList';
 
+import { Login } from '../pages/Login';
 import { appPaths } from '../routers/constants';
 import { useGlobalStore } from '../store/global';
 import type { TProtectedRoute } from '../types/Router';
@@ -27,5 +28,6 @@ export const routes = [
         )
       }
     ]
-  }
+  },
+  { path: appPaths.auth, element: <Login /> }
 ];

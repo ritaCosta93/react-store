@@ -3,8 +3,10 @@ import axios from 'axios';
 import type { IApi } from '../interfaces/api';
 import type { TProductCategories, TProductCategoryNamesList } from '../types/Category';
 import type { TProduct, TProductDeleted, TProductReviews, TProducts } from '../types/Product';
+import type { TLoginResponse } from '../types/User';
 
 const baseURL = 'https://dummyjson.com/products';
+const authURL = 'https://dummyjson.com/auth';
 
 export const api: IApi = {
   //Products
@@ -68,5 +70,25 @@ export const api: IApi = {
   deleteProduct: async (id: string): Promise<TProductDeleted> => {
     const res = await axios.delete<TProductDeleted>(`${baseURL}/products/${id}`);
     return res.data;
+  },
+
+  login: async (username: string, password: string): Promise<TLoginResponse> => {
+    try {
+      const res = await axios.post<TLoginResponse>(
+        `${authURL}/login`,
+        {
+          username,
+          password,
+          expiresInMins: 30
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      return res.data;
+    } catch (err: any) {
+      if (err.response?.status === 401) {
+        throw new Error('Uti ou senha inválidos');
+      }
+      throw err;
+    }
   }
 };

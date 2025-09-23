@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import logo from '../../logo.svg';
 export const Header = () => {
   return (
@@ -6,7 +7,9 @@ export const Header = () => {
         <img src={logo} alt='react shop logo' className='h-24' />
       </div>
       <div className='flex flex-col justify-center w-3/4 nav'>nav goes here</div>
-      <div className='flex flex-col justify-center text-center w-1/6 login'>login goes here</div>
+      <div className='flex flex-col justify-center text-center w-1/6 login'>
+        <Link to='/login'>Login</Link>
+      </div>
     </div>
   );
 };
