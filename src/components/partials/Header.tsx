@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import logo from '../../logo.svg';
+import logo from '../../assets/images/logo.webp';
 import { useGlobalStore } from '../../store/global';
 export const Header = () => {
   const { authenticated, user } = useGlobalStore();
@@ -10,8 +10,12 @@ export const Header = () => {
           <img src={logo} alt='react shop logo' className='h-24' />{' '}
         </Link>
       </div>
-      <div className='flex flex-col justify-center w-3/4 nav'>nav goes here</div>
-      <div className='flex flex-col justify-center text-center w-1/6 login'>{authenticated ? `hello ${user?.username}` : <Link to='/login'>Login</Link>}</div>
+      <div className='flex flex-col justify-center w-full'>
+        <div className='flex flex-row justify-center'>
+          <h1 className='text-4xl'>Indigo Way - The store</h1>
+        </div>
+      </div>
+      <div className='flex flex-col w-40 justify-center text-center login'>{authenticated ? `hello ${user?.username}` : <Link to='/login'>Login</Link>}</div>
     </div>
   );
 };
